@@ -1,0 +1,200 @@
+﻿@using IgwOutgoingStatus.ViewModel
+@model PrftDestViewModel
+
+@{
+    ViewData["Title"] = "Profitable Destinations";
+}
+<style>
+    table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">BTCL IGW Outgoing Call Profitable Destinations</h1>
+</div>
+<br />
+
+<div id="specificDateDiv">
+    <p id="rangedatebox" ><b>Start date:</b> @Model.StartDate.ToShortDateString(), <b>End date:</b> @Model.EndDate.ToShortDateString()</p> 
+</div>
+
+
+<form id="specificdateform">
+  <label>
+    <b>Choose specific date:</b>
+    <input type="date" name="startdate" id="startdate">
+  </label>
+  <button id="specificdatebtn" asp-controller="ProfitableDestination" asp-action="GetDestinations">Submit</button>
+</form>
+
+<br />
+<form id="rangedateform">
+  <label>
+    <b>Choose date range:</b><br></ br>Start Date:
+    <input type="date" name="startdate" id="startdate">
+    <br></ br>End Date:
+    <input type="date" name="enddate" id="enddate">
+  </label>
+  <button id="rangedatebtn" asp-controller="ProfitableDestination" asp-action="GetDestinations">Submit</button>
+</form>
+
+
+<br />
+
+<div>
+    <table style="width:500px;" align="center">
+        <tr>
+            <th style="width:200px;">
+                #
+            </th>
+            <th style="width:200px;">
+                Dest Code
+            </th>
+            <th style="width:200px;">
+                Dest Prefix
+            </th>
+            <th style="width:200px;">
+                Dest Name
+            </th>
+            <th style="width:200px;">
+                Calling Operator
+            </th>
+            <th style="width:200px;">
+                International Carrier
+            </th>
+            <th style="width:200px;">
+                Total Calls
+            </th>
+            <th style="width:200px;">
+                Total Min
+            </th>
+            <th style="width:200px;">
+                Carrier Rate($)
+            </th>
+            <th style="width:200px;">
+                Y Rate($)
+            </th>
+            <th style="width:200px;">
+                X Rate(৳)
+            </th>
+            <th style="width:200px;">
+                Y Rate(৳)
+            </th>
+            <th style="width:200px;">
+                Z Rate(৳)
+            </th>
+            <th style="width:200px;">
+                Total Revenue(৳)
+            </th>
+            <th style="width:200px;">
+                Total Expense(৳)
+            </th>
+            <th style="width:200px;">
+                Total Profit(৳)
+            </th>
+@*            <th style="width:200px;">
+                Month
+            </th>
+            <th style="width:200px;">
+                Date
+            </th>*@
+        </tr>
+
+        @{
+            int i = 0;
+            foreach(var obj in @Model.Igw_Prft_Record_List)
+            {
+                i = i + 1;
+                <tr>
+                    <td style="width:100px;">
+                        @i
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Dest_Code
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Dest_Prefix
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Dest_Name
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Calling_Operator
+                    </td>
+                    <td style="width:100px;">
+                        @obj.International_Carrier
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Total_Calls
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Total_Min
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Carrier_Rate_USD
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Y_Rate_USD
+                    </td>
+                    <td style="width:100px;">
+                        @obj.X_Rate_BDT
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Y_Rate_BDT
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Z_Rate_BDT
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Total_Revenue_BDT
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Total_Expense_BDT
+                    </td>
+                    <td style="width:100px; font-weight:bold">
+                        @obj.Total_Profit_BDT
+                    </td>
+    @*                <td style="width:100px;">
+                        @obj.BillingCycle
+                    </td>
+                    <td style="width:100px;">
+                        @obj.Partition_Day
+                    </td>*@
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+
+@section Scripts
+{
+<script type="text/javascript">
+    $("#rangedatebtn").click(function () {
+        var startDate = new Date("#startdate".value).toDateString();
+        var endDate = new Date("#enddate".value).toDateString();
+        $.ajax({
+            type: "get,
+            //url: "Url.Action("GetRange","Home",null, "http")",
+            //data: {startDate: startDate, endDate: endDate},
+            //dataType: "text",
+            url: "?startDate=" + startDate + "&endDate=" + endDate,
+            success: function () { 
+            }
+        });
+    });
+    </script>
+
+@*<script type="text/javascript">
+    $("#startdate").change(function () {
+        var inputDate = new Date(this.value).toDateString();
+        $.ajax({
+            type: "get",
+            url: "/Home/Index?startdate=" + inputDate,
+            success: function () { }
+        });
+    });
+
+</script>*@
+} 

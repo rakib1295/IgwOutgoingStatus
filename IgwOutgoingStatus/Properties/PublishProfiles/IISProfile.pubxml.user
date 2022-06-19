@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword />
+    <History>True|2022-06-16T12:28:11.1362960Z;True|2022-06-16T18:22:13.3313882+06:00;True|2022-06-16T17:55:45.3450246+06:00;True|2022-06-14T17:32:26.1008852+06:00;True|2022-06-14T17:21:01.9569918+06:00;True|2022-06-14T17:02:02.8971491+06:00;True|2022-06-14T17:00:07.4094249+06:00;True|2022-06-14T16:58:13.5217412+06:00;True|2022-06-14T16:46:53.7436822+06:00;True|2022-06-14T16:01:37.7460807+06:00;True|2022-06-14T15:50:48.9445286+06:00;True|2022-06-14T13:03:01.4009887+06:00;True|2022-06-14T12:58:29.6922416+06:00;True|2022-06-14T12:48:24.8001473+06:00;True|2022-06-14T12:40:39.3750404+06:00;True|2022-06-14T12:33:06.4861751+06:00;True|2022-06-14T12:32:37.1090554+06:00;True|2022-06-14T12:31:30.8555154+06:00;True|2022-06-13T13:14:36.6592285+06:00;False|2022-06-13T13:13:50.1677870+06:00;True|2022-06-13T13:08:43.6295253+06:00;True|2022-06-13T13:04:59.9935370+06:00;False|2022-06-13T13:01:07.6814870+06:00;False|2022-06-13T13:00:36.3459439+06:00;False|2022-06-13T12:57:22.2891041+06:00;False|2022-06-13T12:56:49.6333487+06:00;</History>
+    <_PublishTargetUrl>C:\NewPublish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>server=%28localdb%29\MSSQLLocalDB%3bdatabase=ERP%3bTrusted_Connection=true%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
