@@ -22,9 +22,9 @@ namespace IgwOutgoingStatus.Controllers
         public IActionResult GetDestinations(DateTime? startDate, DateTime? endDate)
         {
             string startbillingcycle = "";
-            string startpartition_day = "";
+            string? startpartition_day = "";
             string endbillingcycle = "";
-            string endpartition_day = "";
+            string? endpartition_day = "";
 
             if (startDate == null)
             {
@@ -60,8 +60,9 @@ namespace IgwOutgoingStatus.Controllers
 
 
             IEnumerable<Igw_Prft_Record> prftRecords = _db.Igw_D_Stat_OG_Prft_Record.Where(t =>
-            DateTime.ParseExact(t.BillingCycle + t.Partition_Day, "yyyyMMdd", provider) >= prftDestViewModel.StartDate &&
-            DateTime.ParseExact(t.BillingCycle + t.Partition_Day, "yyyyMMdd", provider) <= prftDestViewModel.EndDate).GroupBy(
+                Convert.ToInt32(t.BillingCycle + t.Partition_Day) >= Convert.ToInt32(startbillingcycle + startpartition_day) &&
+                Convert.ToInt32(t.BillingCycle + t.Partition_Day) <= Convert.ToInt32(endbillingcycle + endpartition_day)
+                ).GroupBy(
                         l => new
                         {
                             l.Dest_Code,
