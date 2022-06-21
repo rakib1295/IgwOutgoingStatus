@@ -94,7 +94,7 @@ namespace IgwOutgoingStatus.Controllers
                             BillingCycle = cs.Key.BillingCycle,
                             Partition_Day = cs.Key.Partition_Day,
                             //Exchange_Rate = cs.Key.Exchange_Rate
-                        }).ToList().Where(p=> p.Total_Loss_BDT < 0).OrderBy(d => d.Total_Loss_BDT);
+                        }).ToList().Where(p => p.Total_Loss_BDT < 0).OrderBy(d => d.Total_Loss_BDT);
             //.OrderByDescending(e => e.Total_Min);
 
             HomeViewModel homeViewModel = new HomeViewModel();
@@ -103,7 +103,6 @@ namespace IgwOutgoingStatus.Controllers
             homeViewModel.EndDate = DateTime.ParseExact(endbillingcycle + endpartition_day, "yyyyMMdd", provider);
 
             homeViewModel.Igw_Loss_Record_List = lossRecords;
-
 
             return View("Index",homeViewModel);
         }

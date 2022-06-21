@@ -15,12 +15,19 @@
 </div>
 <br />
 
-<div id="specificDateDiv" class="col-12">
-    <p id="rangedatebox" ><b>Start date:</b> @Model.StartDate.ToShortDateString(), <b>End date:</b> @Model.EndDate.ToShortDateString()</p> 
+<div id="specificDateDiv" style="color:darkred">
+        @if(Model.StartDate == Model.EndDate)
+        {
+            <p><b>Specific Date: </b>  @Model.StartDate.ToShortDateString()</p>
+        }
+        else
+        {
+            <p><b>Start date: </b> @Model.StartDate.ToShortDateString(), <b>End date: </b> @Model.EndDate.ToShortDateString()</p>
+        }
 </div>
 
-
-<form id="specificdateform" class="col-12">
+<div>
+<form id="specificdateform">
   <label>
     <b>Choose specific date:</b>
     <input type="date" name="startdate" id="startdate">
@@ -29,7 +36,7 @@
 </form>
 
 <br />
-<form id="rangedateform" class="col-12">
+<form id="rangedateform">
   <label>
     <b>Choose date range:</b><br></ br>Start Date:
     <input type="date" name="startdate" id="startdate">
@@ -38,163 +45,260 @@
   </label>
   <button id="rangedatebtn" asp-controller="home" asp-action="Index">Submit</button>
 </form>
-
+</div>
 
 <br />
 
-<div>
-    <table style="width:500px;" align="center" class="col-12">
-        <tr>
-            <th style="width:200px;">
-                #
-            </th>
-            <th style="width:200px;">
-                Dest Code
-            </th>
-            <th style="width:200px;">
-                Dest Prefix
-            </th>
-            <th style="width:200px;">
-                Dest Name
-            </th>
-            <th style="width:200px;">
-                Calling Operator
-            </th>
-            <th style="width:200px;">
-                International Carrier
-            </th>
-            <th style="width:200px;">
-                Total Calls
-            </th>
-            <th style="width:200px;">
-                Total Min
-            </th>
-            <th style="width:200px;">
-                Carrier Rate($)
-            </th>
-            <th style="width:200px;">
-                Y Rate($)
-            </th>
-            <th style="width:200px;">
-                X Rate(৳)
-            </th>
-            <th style="width:200px;">
-                Y Rate(৳)
-            </th>
-            <th style="width:200px;">
-                Z Rate(৳)
-            </th>
-            <th style="width:200px;">
-                Total Revenue(৳)
-            </th>
-            <th style="width:200px;">
-                Total Expense(৳)
-            </th>
-            <th style="width:200px;">
-                Total Loss(৳)
-            </th>
-            <th style="width:200px;">
-                Month
-            </th>
-            <th style="width:200px;">
-                Date
-            </th>
-        </tr>
+<div class="table-responsive">
+    <table class="table table-hover table-striped datatable" id="igwTable">
+        <thead>
+            <tr>
+                <th scope="col">
+                    #
+                </th>
+                <th scope="col">
+                    Dest Code
+                </th>
+                <th scope="col">
+                    Dest Prefix
+                </th>
+                <th scope="col">
+                    Dest Name
+                </th>
+                <th  scope="col">
+                    Calling Operator
+                </th>
+                <th  scope="col">
+                    International Carrier
+                </th>
+                <th  scope="col">
+                    Total Calls
+                </th>
+                <th  scope="col">
+                    Total Min
+                </th>
+                <th  scope="col">
+                    Carrier Rate($)
+                </th>
+                <th  scope="col">
+                    Y Rate($)
+                </th>
+                <th  scope="col">
+                    X Rate(৳)
+                </th>
+                <th style="width:200px;">
+                    Y Rate(৳)
+                </th>
+                <th scope="col">
+                    Z Rate(৳)
+                </th>
+                <th  scope="col">
+                    Total Revenue(৳)
+                </th>
+                <th  scope="col">
+                    Total Expense(৳)
+                </th>
+                <th  scope="col">
+                    Total Loss(৳)
+                </th>
+                <th  scope="col" style="color:green">
+                    Loss(৳) per call
+                </th>
+                <th  scope="col"  style="color:red">
+                    Loss(৳) per min
+                </th>
+@*                <th  scope="col">
+                    Month
+                </th>
+                <th  scope="col">
+                    Date
+                </th>*@
+            </tr>
+        </thead>
 
+        <tbody>
         @{
             int i = 0;
             foreach(var obj in @Model.Igw_Loss_Record_List)
             {
                 i = i + 1;
                 <tr>
-                    <td style="width:100px;">
+                    <th scope="row">
                         @i
-                    </td>
-                    <td style="width:100px;">
+                    </th>
+                    <td>
                         @obj.Dest_Code
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Dest_Prefix
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Dest_Name
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Calling_Operator
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.International_Carrier
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Total_Calls
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Total_Min
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Carrier_Rate_USD
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Y_Rate_USD
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.X_Rate_BDT
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Y_Rate_BDT
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Z_Rate_BDT
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Total_Revenue_BDT
                     </td>
-                    <td style="width:100px;">
+                    <td>
                         @obj.Total_Expense_BDT
                     </td>
-                    <td style="width:100px; font-weight:bold">
+                    <td style="font-weight:bold">
                         @obj.Total_Loss_BDT
                     </td>
-                   <td style="width:100px;">
-                        @obj.BillingCycle
+                    <td style="color:green">
+                        @Math.Round(obj.Total_Loss_BDT / obj.Total_Calls,2)
                     </td>
-                    <td style="width:100px;">
-                        @obj.Partition_Day
+                    <td style="color:red">
+                        @Math.Round(obj.Total_Loss_BDT / obj.Total_Min,2)
                     </td>
                 </tr>
             }
         }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th scope="row" colspan="6">
+                Total
+                <th scope="row">
+                    @Model.Igw_Loss_Record_List.Sum(t=> t.Total_Calls)
+                </th>
+                <th scope="row">
+                    @Math.Round(Model.Igw_Loss_Record_List.Sum(t=> t.Total_Min),3)
+                </th>
+                <th  colspan="5">
+                </th>
+                <th scope="row">
+                    @Math.Round(Model.Igw_Loss_Record_List.Sum(t=> t.Total_Revenue_BDT),2)
+                </th>
+                <th scope="row">
+                    @Math.Round(Model.Igw_Loss_Record_List.Sum(t=> t.Total_Expense_BDT),2)
+                </th>
+                <th scope="row">
+                    @Math.Round(Model.Igw_Loss_Record_List.Sum(t=> t.Total_Loss_BDT),2)
+                </th>
+                <th  colspan="2">
+                </th>
+            </tr>
+
+            <tr>
+                <th scope="col">
+                    #
+                </th>
+                <th scope="col">
+                    Dest Code
+                </th>
+                <th scope="col">
+                    Dest Prefix
+                </th>
+                <th scope="col">
+                    Dest Name
+                </th>
+                <th  scope="col">
+                    Calling Operator
+                </th>
+                <th  scope="col">
+                    International Carrier
+                </th>
+                <th  scope="col">
+                    Total Calls
+                </th>
+                <th  scope="col">
+                    Total Min
+                </th>
+                <th  scope="col">
+                    Carrier Rate($)
+                </th>
+                <th  scope="col">
+                    Y Rate($)
+                </th>
+                <th  scope="col">
+                    X Rate(৳)
+                </th>
+                <th style="width:200px;">
+                    Y Rate(৳)
+                </th>
+                <th scope="col">
+                    Z Rate(৳)
+                </th>
+                <th  scope="col">
+                    Total Revenue(৳)
+                </th>
+                <th  scope="col">
+                    Total Expense(৳)
+                </th>
+                <th  scope="col">
+                    Total Loss(৳)
+                </th>
+                <th  scope="col" style="color:green">
+                    Loss(৳) per call
+                </th>
+                <th  scope="col"  style="color:red">
+                    Loss(৳) per min
+                </th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
-
-@section Scripts
-{
-<script type="text/javascript">
-    $("#rangedatebtn").click(function () {
-        var startDate = new Date("#startdate".value).toDateString();
-        var endDate = new Date("#enddate".value).toDateString();
-        $.ajax({
-            type: "get,
-            //url: "Url.Action("GetRange","Home",null, "http")",
-            //data: {startDate: startDate, endDate: endDate},
-            //dataType: "text",
-            url: "?startDate=" + startDate + "&endDate=" + endDate,
-            success: function () { 
-            }
-        });
+<script>
+    $('#igwTable').DataTable({searching: false, paging: false, info: false});
+</script>
+@*<script>
+$(document).ready(function () {
+    $('#igwTable').DataTable({
+        footerCallback: function (row, data, start, end, display) {
+            var api = this.api();
+ 
+            // Remove the formatting to get integer data for summation
+            var intVal = function (i) {
+                return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
+            };
+ 
+            // Total over all pages
+            total = api
+                .column(6)
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+ 
+            // Total over this page
+            pageTotal = api
+                .column(6, { page: 'current' })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+ 
+            // Update footer
+            $(api.column(6).footer()).html('$' + pageTotal + ' ( $' + total + ' total)');
+        },
     });
-    </script>
-
-@*<script type="text/javascript">
-    $("#startdate").change(function () {
-        var inputDate = new Date(this.value).toDateString();
-        $.ajax({
-            type: "get",
-            url: "/Home/Index?startdate=" + inputDate,
-            success: function () { }
-        });
-    });
-
+});
 </script>*@
-} 
