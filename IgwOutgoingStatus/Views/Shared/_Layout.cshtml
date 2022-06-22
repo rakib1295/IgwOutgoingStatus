@@ -47,19 +47,154 @@
     <br />
     <footer class="border-top position-relative footer text-muted">
         <div class="container">
-  <div class="row">
-    <div class="col">
-      <b>Developed by:</b><br /><a href="https://www.linkedin.com/in/md-rakib-subaid/" target="_blank">Md. Rakib Subaid, IT & Billing, BTCL</a>
-    </div>
-    <div class="col-6" align="center">
-      BTCL &copy; 2022<br>All Rights Reserved
-    </div>
-    <div class="col">
+          <div class="row">
+            <div class="col">
+              <b>Developed by:</b><br /><a href="https://www.linkedin.com/in/md-rakib-subaid/" target="_blank">Md. Rakib Subaid, IT & Billing, BTCL</a>
+            </div>
+            <div class="col-6" align="center">
+              BTCL &copy; 2022<br>All Rights Reserved
+            </div>
+            <div class="col">
       
-    </div>
-  </div>
-</div>
+            </div>
+          </div>
+        </div>
     </footer>
+
+    <script>
+    $('#igwTable').DataTable({"lengthMenu" : [ [50, 100, 200, -1], [50, 100, 200, "All"] ],
+        footerCallback: function (tfoot, data, start, end, display) {
+            //console.log(display);
+            
+            var api = this.api();
+            
+ 
+            // Remove the formatting to get integer data for summation
+            var intVal = function (i) {
+                return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
+            };
+ 
+             
+            // Total over this page
+            pageTotal6 = api
+                .column(6, { page: 'current' })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+            // Total over all pages
+            total6 = api
+                .column(6)
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+            
+            pageTotal7 = api
+                .column(7, { page: 'current' })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+
+            total7 = api
+                .column(7)
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+ 
+            pageTotal8 = pageTotal7/pageTotal6;
+            total8 = total7/total6;
+            
+
+
+            pageTotal14 = api
+                .column(14, { page: 'current' })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+
+            total14 = api
+                .column(14)
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+            
+            pageTotal15 = api
+                .column(15, { page: 'current' })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+
+            total15 = api
+                .column(15)
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+            
+            pageTotal16 = api
+                .column(16, { page: 'current' })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+
+            total16 = api
+                .column(16)
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+
+            pageTotal17 = pageTotal16/pageTotal6;
+            total17 = total16/total6;
+
+            pageTotal18 = pageTotal16/pageTotal7;
+            total18 = total16/total7;
+
+ 
+            // Update footer
+            $(api.column(6).footer()).html(pageTotal6 + "/\n" + total6);
+            $(api.column(7).footer()).html(
+                (pageTotal7 === 0 ? 0 : pageTotal7.toFixed(3)) + "/\n" + 
+                (total7 === 0 ? 0 : total7.toFixed(3)));
+            $(api.column(8).footer()).html(
+                (pageTotal6 === 0 ? "-" : pageTotal8.toFixed(3)) + "/\n" + 
+                (total6 === 0 ? "-" : total8.toFixed(3)));
+            $(api.column(14).footer()).html(
+                (pageTotal14 === 0 ? 0 : pageTotal14.toFixed(2)) + "/\n" + 
+                (total14 === 0 ? 0 : total14.toFixed(2)));
+            $(api.column(15).footer()).html(
+                (pageTotal15 === 0 ? 0 : pageTotal15.toFixed(2)) + "/\n" + 
+                (total15 === 0 ? 0 : total15.toFixed(2)));
+            $(api.column(16).footer()).html(
+                (pageTotal16 === 0 ? 0 : pageTotal16.toFixed(2)) + "/\n" + 
+                (total16 === 0 ? 0 : total16.toFixed(2)));
+            $(api.column(17).footer()).html(
+                (pageTotal6 === 0 ? "-" : pageTotal17.toFixed(3)) + "/\n" + 
+                (total6 === 0 ? "-" : total17.toFixed(3)));
+            $(api.column(18).footer()).html(
+                (pageTotal7 === 0 ? "-" : pageTotal18.toFixed(3)) + "/\n" + 
+                (total7 === 0 ? "-" : total18.toFixed(3)));
+        },
+    });
+
+    </script>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

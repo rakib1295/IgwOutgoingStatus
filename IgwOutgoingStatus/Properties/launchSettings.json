@@ -14,7 +14,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       },
-      "applicationUrl": "http://192.168.1.101:5211",
+      "applicationUrl": "http://192.168.1.100:5211",
       "dotnetRunMessages": true
     },
     "IIS Express": {

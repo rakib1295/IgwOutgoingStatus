@@ -77,6 +77,9 @@
                 <th  scope="col">
                     Total Min
                 </th>
+                <th  scope="col"  style="color:darkblue">
+                    Duration per Call (ACD)
+                </th>
                 <th  scope="col">
                     Carrier Rate($)
                 </th>
@@ -102,10 +105,10 @@
                     Total Profit(৳)
                 </th>
                 <th  scope="col" style="color:green">
-                    Profit(৳) per call
+                    Profit(৳) per Call
                 </th>
                 <th  scope="col"  style="color:red">
-                    Profit(৳) per min
+                    Profit(৳) per Min
                 </th>
 @*                <th  scope="col">
                     Month
@@ -147,6 +150,9 @@
                     <td>
                         @obj.Total_Min
                     </td>
+                    <td style="color:darkblue">
+                        @Math.Round(obj.Total_Min/obj.Total_Calls,3)
+                    </td>
                     <td>
                         @obj.Carrier_Rate_USD
                     </td>
@@ -184,12 +190,15 @@
         <tfoot>
             <tr>
                 <th scope="row" colspan="6">
-                Total
+                Current Page Total / All Pages Total
                 <th scope="row">
                     @Model.Igw_Prft_Record_List.Sum(t=> t.Total_Calls)
                 </th>
                 <th scope="row">
                     @Math.Round(Model.Igw_Prft_Record_List.Sum(t=> t.Total_Min),3)
+                </th>
+                <th scope="row" style="color:darkblue">
+                    @Math.Round(Model.Igw_Prft_Record_List.Sum(t=> t.Total_Min)/Model.Igw_Prft_Record_List.Sum(t=> t.Total_Calls),3)
                 </th>
                 <th  colspan="5">
                 </th>
@@ -202,7 +211,11 @@
                 <th scope="row">
                     @Math.Round(Model.Igw_Prft_Record_List.Sum(t=> t.Total_Profit_BDT),2)
                 </th>
-                <th  colspan="2">
+                <th scope="row"  style="color:green">
+                    @Math.Round(Model.Igw_Prft_Record_List.Sum(t=> t.Total_Profit_BDT)/@Model.Igw_Prft_Record_List.Sum(t=> t.Total_Calls),2)
+                </th>
+                <th scope="row"  style="color:red">
+                    @Math.Round(Model.Igw_Prft_Record_List.Sum(t=> t.Total_Profit_BDT)/@Model.Igw_Prft_Record_List.Sum(t=> t.Total_Min),2)
                 </th>
             </tr>
             <tr>
@@ -229,6 +242,9 @@
                 </th>
                 <th  scope="col">
                     Total Min
+                </th>
+                <th  scope="col"  style="color:darkblue">
+                    Duration per Call (ACD)
                 </th>
                 <th  scope="col">
                     Carrier Rate($)
@@ -265,39 +281,6 @@
     </table>
 </div>
 
-<script>
-    $('#igwTable').DataTable({searching: false, paging: false, info: false});
-</script>
 @*<script>
-$(document).ready(function () {
-    $('#igwTable').DataTable({
-        footerCallback: function (row, data, start, end, display) {
-            var api = this.api();
- 
-            // Remove the formatting to get integer data for summation
-            var intVal = function (i) {
-                return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
-            };
- 
-            // Total over all pages
-            total = api
-                .column(6)
-                .data()
-                .reduce(function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
- 
-            // Total over this page
-            pageTotal = api
-                .column(6, { page: 'current' })
-                .data()
-                .reduce(function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
- 
-            // Update footer
-            $(api.column(6).footer()).html('$' + pageTotal + ' ( $' + total + ' total)');
-        },
-    });
-});
+    $('#igwTable').DataTable({searching: false, paging: false, info: false});
 </script>*@
