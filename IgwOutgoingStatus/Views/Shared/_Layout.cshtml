@@ -61,8 +61,14 @@
         </div>
     </footer>
 
+
     <script>
-    $('#igwTable').DataTable({"lengthMenu" : [ [50, 100, 200, -1], [50, 100, 200, "All"] ],
+    var table = $('#igwTable').DataTable({
+        //dom: 'Bfrtip',
+        //buttons: [
+        //    'copy', 'csv', 'excel', 'pdf', 'print'
+        //],
+        "lengthMenu" : [ [50, 100, 200, -1], [50, 100, 200, "All"] ],
         footerCallback: function (tfoot, data, start, end, display) {
             //console.log(display);
             
@@ -191,6 +197,18 @@
                 (pageTotal7 === 0 ? "-" : pageTotal18.toFixed(3)) + "/\n" + 
                 (total7 === 0 ? "-" : total18.toFixed(3)));
         },
+    });
+
+
+        $("#btnExport").click(function(e) 
+    {
+    	table.page.len( -1 ).draw();
+        window.open('data:application/vnd.ms-excel,' + 
+        	encodeURIComponent($('#igwTable').parent().html()));
+      setTimeout(function(){
+      	table.page.len(10).draw();
+      }, 1000)
+      
     });
 
     </script>

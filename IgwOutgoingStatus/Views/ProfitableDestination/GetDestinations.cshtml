@@ -100,10 +100,10 @@
                 <th  scope="col">
                     Total Profit(৳)
                 </th>
-                <th  scope="col" style="color:green">
+                <th  scope="col" style="color:#387C44">
                     Profit(৳) per Call
                 </th>
-                <th  scope="col"  style="color:red">
+                <th  scope="col"  style="color:#4B5320">
                     Profit(৳) per Min
                 </th>
 @*                <th  scope="col">
@@ -173,10 +173,10 @@
                     <td style="font-weight:bold">
                         @obj.Total_Profit_BDT
                     </td>
-                    <td style="color:green">
+                    <td style="color:#387C44">
                         @Math.Round(obj.Total_Profit_BDT / obj.Total_Calls,2)
                     </td>
-                    <td style="color:red">
+                    <td style="color:#4B5320">
                         @Math.Round(obj.Total_Profit_BDT / obj.Total_Min,2)
                     </td>
                 </tr>
@@ -207,10 +207,10 @@
                 <th scope="row">
                     @Math.Round(Model.Igw_Prft_Record_List.Sum(t=> t.Total_Profit_BDT),2)
                 </th>
-                <th scope="row"  style="color:green">
+                <th scope="row"  style="color:#387C44">
                     @Math.Round(Model.Igw_Prft_Record_List.Sum(t=> t.Total_Profit_BDT)/@Model.Igw_Prft_Record_List.Sum(t=> t.Total_Calls),2)
                 </th>
-                <th scope="row"  style="color:red">
+                <th scope="row"  style="color:#4B5320">
                     @Math.Round(Model.Igw_Prft_Record_List.Sum(t=> t.Total_Profit_BDT)/@Model.Igw_Prft_Record_List.Sum(t=> t.Total_Min),2)
                 </th>
             </tr>
@@ -265,19 +265,21 @@
                     Total Expense(৳)
                 </th>
                 <th  scope="col">
-                    Total Loss(৳)
+                    Total Profit(৳)
                 </th>
-                <th  scope="col" style="color:green">
+                <th  scope="col" style="color:#387C44">
                     Profit(৳) per call
                 </th>
-                <th  scope="col"  style="color:red">
+                <th  scope="col"  style="color:#4B5320">
                     Profit(৳) per min
                 </th>
             </tr>
         </tfoot>
     </table>
 </div>
-
+<br></ br>
+<button id="btnExport">Export</button>
+<br></ br>
 @*<script>
     $('#igwTable').DataTable({searching: false, paging: false, info: false});
 </script>*@

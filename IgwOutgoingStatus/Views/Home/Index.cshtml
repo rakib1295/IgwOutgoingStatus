@@ -99,10 +99,10 @@
                 <th  scope="col">
                     Total Loss(৳)
                 </th>
-                <th  scope="col" style="color:green">
+                <th  scope="col" style="color:#387C44">
                     Loss(৳) per Call
                 </th>
-                <th  scope="col"  style="color:red">
+                <th  scope="col"  style="color:#4B5320">
                     Loss(৳) per Min
                 </th>
 @*                <th  scope="col">
@@ -172,10 +172,10 @@
                     <td style="font-weight:bold">
                         @obj.Total_Loss_BDT
                     </td>
-                    <td style="color:green">
+                    <td style="color:#387C44">
                         @Math.Round(obj.Total_Loss_BDT / obj.Total_Calls,2)
                     </td>
-                    <td style="color:red">
+                    <td style="color:#4B5320">
                         @Math.Round(obj.Total_Loss_BDT / obj.Total_Min,2)
                     </td>
                 </tr>
@@ -206,10 +206,10 @@
                 <th scope="row">
                     @Math.Round(Model.Igw_Loss_Record_List.Sum(t=> t.Total_Loss_BDT),2)
                 </th>
-                <th scope="row" style="color:green">
+                <th scope="row" style="color:#387C44">
                     @Math.Round(Model.Igw_Loss_Record_List.Sum(t=> t.Total_Loss_BDT)/@Model.Igw_Loss_Record_List.Sum(t=> t.Total_Calls),2)
                 </th>
-                <th scope="row" style="color:red">
+                <th scope="row" style="color:#4B5320">
                     @Math.Round(Model.Igw_Loss_Record_List.Sum(t=> t.Total_Loss_BDT)/@Model.Igw_Loss_Record_List.Sum(t=> t.Total_Min),2)
                 </th>
             </tr>
@@ -266,13 +266,16 @@
                 <th  scope="col">
                     Total Loss(৳)
                 </th>
-                <th  scope="col" style="color:green">
+                <th  scope="col" style="color:#387C44">
                     Loss(৳) per call
                 </th>
-                <th  scope="col"  style="color:red">
+                <th  scope="col"  style="color:#4B5320">
                     Loss(৳) per min
                 </th>
             </tr>
         </tfoot>
     </table>
 </div>
+<br></ br>
+<button id="btnExport">Export</button>
+<br></ br>
